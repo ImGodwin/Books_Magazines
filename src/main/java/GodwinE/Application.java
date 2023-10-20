@@ -1,6 +1,11 @@
 package GodwinE;
 
+import GodwinE.DAO.BookDAO;
+import GodwinE.DAO.MagazineDAO;
 import GodwinE.DAO.UserDAO;
+import GodwinE.entities.Book;
+import GodwinE.entities.Magazine;
+import GodwinE.entities.Release;
 import GodwinE.entities.Renter;
 import com.github.javafaker.Faker;
 
@@ -12,6 +17,7 @@ import java.time.LocalDateTime;
 import java.time.Period;
 import java.util.Locale;
 import java.util.Random;
+import java.util.function.Supplier;
 
 public class Application {
     private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("book_magazine");
@@ -19,6 +25,10 @@ public class Application {
 
         EntityManager em = emf.createEntityManager();
         Faker faker = new Faker(Locale.ITALY);
+        /*Supplier<Book> bookSupplier = () -> {
+            return new Book(faker.book().publisher(), faker.book().title(), faker.random().nextDouble(), faker.number().numberBetween(100, 300),
+                    faker.book().author(), faker.book().genre());
+        };*/
 
         LocalDate today = LocalDate.now();
 
@@ -27,20 +37,46 @@ public class Application {
                 = today.plusDays(30);
 
         LocalDate cumpolsoryReturnDate = today.plusDays(30).minusDays(yesterday.compareTo(returnDate));
+        //DAO's
+
+        UserDAO user = new UserDAO(em);
+        BookDAO bookDAO = new BookDAO(em);
+        MagazineDAO magDAO = new MagazineDAO(em);
 
         Random rndmNum = new Random();
+
+        //BOOKs and MAGS
+        Magazine newMag = new Magazine(23344, "fashion", "1993", 98, Release.WEEKLY);
+        Magazine newMag2 = new Magazine(275894, "engineer", "1994", 89, Release.WEEKLY);
+        Magazine newMag3 = new Magazine(945775, "Good book", "1995", 67, Release.YEARLY);
+        Magazine newMag4 = new Magazine(75890, "Playboy", "1991", 78, Release.MONTHLY);
+        Magazine newMag5 = new Magazine(34644, "women", "1973", 98, Release.WEEKLY);
+        Magazine newMag6 = new Magazine(98776, "pilot", "1983", 98, Release.WEEKLY);
+        Magazine newMag7 = new Magazine(78907, "Stories", "1963", 98, Release.YEARLY);
+
+        //<<<<<<<<<<<<<<<<<<<<
+
+        Book book1 = new Book(77599, "fathers book", "1986", 400, "Mr James", "Romance");
+        Book book2 = new Book(57847, "Health book", "1982", 200, "Mr Mike", "Health");
+        Book book3 = new Book(50967, "Love book", "1983", 300, "Mr John", "Romance");
+        Book book4 = new Book(58579, "Marriage book", "1984", 500, "Mr Williams", "Growth");
+        Book book5 = new Book(50869, "Kids book", "1985", 600, "Mr John", "Parenting");
+        Book book6 = new Book(96894, "Cook book", "1987", 100, "Mr Wright", "Cook");
+
+
+        //try catch
         try {
-            UserDAO user = new UserDAO(em);
 
 
 
-            Renter renter1 = new Renter(faker.name().firstName(), faker.name().lastName(), "13-05-1970",
-                    "3klkge04ì4", faker.book().title(), yesterday, returnDate, cumpolsoryReturnDate);
 
-            Renter renter2 = new Renter(faker.name().firstName(), faker.name().lastName(), "13-05-1970",
-                    "3ejfhewrh", faker.book().title(), yesterday, returnDate, cumpolsoryReturnDate);
+           /* Renter renter1 = new Renter(faker.name().firstName(), faker.name().lastName(), "13-05-1970",
+                    "3klkge04ì4", faker.book().title(), yesterday, returnDate, cumpolsoryReturnDate);*/
 
-            user.save(renter1);
+            Renter renter2 = new Renter("Kade", "wann", "13-05-1970",
+                    "3ejfhewrh", "happy", yesterday, returnDate, cumpolsoryReturnDate);
+
+            user.save(renter2);
 
 
 

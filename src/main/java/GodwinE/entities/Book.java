@@ -21,6 +21,7 @@ public class Book {
     @JoinColumn(name = "renter_id", nullable = false)
     private Renter renter;
 
+
     public Book(){}
     public Book(int isbn, String title, String yearPublished, int pages, String author, String genre) {
         this.isbn = isbn;
