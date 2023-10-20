@@ -5,7 +5,9 @@ import GodwinE.entities.Book;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
 
+import java.util.List;
 import java.util.UUID;
 
 public class BookDAO {
@@ -48,5 +50,11 @@ public class BookDAO {
         }else {
             System.out.println("the book with " + id + " was not found");
         }
+    }
+
+    public List<Book> getAuthor(String author){
+        TypedQuery<Book> name = em.createQuery("SELECT c FROM Book c WHERE c.author = :author", Book.class);
+        name.setParameter("author", author);
+        return name.getResultList();
     }
 }

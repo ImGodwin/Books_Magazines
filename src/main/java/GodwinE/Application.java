@@ -80,9 +80,16 @@ public class Application {
             bookDAO.save(book5);
             bookDAO.save(book6);*/
 
-            //Remove element
-            magDAO.findByisbnAndDelete(75890);
+            //<<<<<<<<<<<<<<<<Remove element>>>>>>>>>>>>>>>>
+            //magDAO.findByisbnAndDelete(75890);
 
+
+            //<<<<<<<<<<<<get via year published>>>>>>>>>>>>>
+
+           // magDAO.searchYearPublished("1995");
+
+            //<<<<<<<<<get author by name >>>>>>>>>>>>>>
+            bookDAO.getAuthor("Mr Mike").forEach(authors -> System.out.println(authors));
 
         }catch (Exception ex){
             System.out.println(ex.getMessage());

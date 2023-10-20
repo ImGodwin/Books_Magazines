@@ -6,7 +6,9 @@ import GodwinE.entities.Magazine;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
+import java.util.List;
 import java.util.UUID;
 
 public class MagazineDAO {
@@ -29,10 +31,9 @@ public class MagazineDAO {
         System.out.println("Magazine saved");
     }
 
-    public Magazine deleteWithISBN(Magazine id) {
-        return em.find(Magazine.class, id);
-    }
 
+
+    //delete with ISBN
     public void findByisbnAndDelete(int num)
     {
         EntityTransaction transaction = em.getTransaction();
@@ -50,24 +51,17 @@ public class MagazineDAO {
             System.out.println(queryToDelete + " not found");
         }
 
-
-
-
-
-
-        /*Magazine found = em.find(Magazine.class, id);
-        if(found != null)
-        {
-            EntityTransaction transaction = em.getTransaction();
-
-            transaction.begin();
-
-            em.remove(found);
-
-            transaction.commit();
-            System.out.println("The magazine has been deleted");
-        }else {
-            System.out.println("the magazine with " + id + " was not found");
-        }*/
     }
+
+    //Search publication year
+   /* public List<Magazine> searchYearPublished(String date)
+    {
+        TypedQuery<Magazine> requestYearPublished = em.createQuery("SELECT Magazine FROM Magazine WHERE Magazine.yearpublished = :date", Magazine.class);
+        requestYearPublished.setParameter("date", date);
+        return requestYearPublished.getResultList();
+
+    }*/
+
+    //Search by title
+
 }
