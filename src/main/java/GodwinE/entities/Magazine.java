@@ -17,7 +17,7 @@ public class Magazine {
     private Release releaseStyle;
 
     @ManyToOne
-    @JoinColumn(name = "renter_id", nullable = false)
+    @JoinColumn(name = "renter_id")
     private Renter renter;
 
     public Magazine(){}

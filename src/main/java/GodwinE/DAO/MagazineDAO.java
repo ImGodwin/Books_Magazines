@@ -5,6 +5,7 @@ import GodwinE.entities.Magazine;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 
 import java.util.UUID;
 
@@ -25,16 +26,36 @@ public class MagazineDAO {
         em.persist(magazine);
 
         transaction.commit();
-        System.out.println("Student saved");
+        System.out.println("Magazine saved");
     }
 
-    public Magazine findById(UUID id) {
+    public Magazine deleteWithISBN(Magazine id) {
         return em.find(Magazine.class, id);
     }
 
-    public void findByIdAndDelete(UUID id)
+    public void findByisbnAndDelete(int num)
     {
-        Magazine found = em.find(Magazine.class, id);
+        EntityTransaction transaction = em.getTransaction();
+        transaction.begin();
+
+        Query queryISBN = em.createQuery("DELETE FROM Magazine m WHERE m.isbn = :num");
+        queryISBN.setParameter("num", num);
+
+        int queryToDelete = queryISBN.executeUpdate();
+
+        transaction.commit();
+        if (queryToDelete > 0) {
+            System.out.println("This magazine has been deleted: " + queryToDelete);
+        } else {
+            System.out.println(queryToDelete + " not found");
+        }
+
+
+
+
+
+
+        /*Magazine found = em.find(Magazine.class, id);
         if(found != null)
         {
             EntityTransaction transaction = em.getTransaction();
@@ -47,6 +68,6 @@ public class MagazineDAO {
             System.out.println("The magazine has been deleted");
         }else {
             System.out.println("the magazine with " + id + " was not found");
-        }
+        }*/
     }
 }

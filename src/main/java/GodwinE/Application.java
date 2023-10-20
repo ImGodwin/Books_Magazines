@@ -67,17 +67,21 @@ public class Application {
         //try catch
         try {
 
+            /*magDAO.save(newMag);
+            magDAO.save(newMag2);
+            magDAO.save(newMag3);
+            magDAO.save(newMag4);
+            magDAO.save(newMag5);
+            magDAO.save(newMag6);*/
+            //
+            /*bookDAO.save(book2);
+            bookDAO.save(book3);
+            bookDAO.save(book4);
+            bookDAO.save(book5);
+            bookDAO.save(book6);*/
 
-
-
-           /* Renter renter1 = new Renter(faker.name().firstName(), faker.name().lastName(), "13-05-1970",
-                    "3klkge04ì4", faker.book().title(), yesterday, returnDate, cumpolsoryReturnDate);*/
-
-            Renter renter2 = new Renter("Kade", "wann", "13-05-1970",
-                    "3ejfhewrh", "happy", yesterday, returnDate, cumpolsoryReturnDate);
-
-            user.save(renter2);
-
+            //Remove element
+            magDAO.findByisbnAndDelete(75890);
 
 
         }catch (Exception ex){
