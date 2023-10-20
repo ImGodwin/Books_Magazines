@@ -20,6 +20,7 @@ public class Books {
     private String author;
     private String genre;
 
+    public Books(){}
     public Books(int isbn, String title, String yearPublished, int pages, String author, String genre) {
         this.isbn = isbn;
         this.title = title;
