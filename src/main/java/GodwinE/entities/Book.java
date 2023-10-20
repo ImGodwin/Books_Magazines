@@ -1,14 +1,11 @@
 package GodwinE.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
 @Table(name = "books")
-public class Books {
+public class Book {
 
     @Id
     @GeneratedValue
@@ -20,8 +17,12 @@ public class Books {
     private String author;
     private String genre;
 
-    public Books(){}
-    public Books(int isbn, String title, String yearPublished, int pages, String author, String genre) {
+    @ManyToOne
+    @JoinColumn(name = "renter_id", nullable = false)
+    private Renter renter;
+
+    public Book(){}
+    public Book(int isbn, String title, String yearPublished, int pages, String author, String genre) {
         this.isbn = isbn;
         this.title = title;
         this.yearPublished = yearPublished;

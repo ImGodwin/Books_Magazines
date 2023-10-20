@@ -2,25 +2,36 @@ package GodwinE.entities;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import java.time.LocalDate;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 @DiscriminatorValue("renter")
 public class Renter extends User {
 
-    private User user;
-    private String itemREnted;
+
+    private String itemRented;
     private LocalDate dateRented;
     private LocalDate returnDate;
     private LocalDate dateReturned;
 
-    public Renter(){}
+    @OneToMany(mappedBy = "renter")
+    @OrderBy("title ASC")
+    private List<Book> book;
 
-    public Renter(String name, String surname, String dateOfBirth, String cardNum, User user,
-                  String itemREnted, LocalDate dateRented, LocalDate returnDate, LocalDate dateReturned) {
+    @OneToMany(mappedBy = "renter")
+    @OrderBy("title ASC")
+    private List<Magazine> magazine;
+
+    public Renter(String s, String string, Date birthday, int i, String title, LocalDate yesterday, LocalDate value){}
+
+    public Renter(String name, String surname, String dateOfBirth, String cardNum,
+                  String itemRented, LocalDate dateRented, LocalDate returnDate, LocalDate dateReturned) {
         super(name, surname, dateOfBirth, cardNum);
-        this.user = user;
-        this.itemREnted = itemREnted;
+        this.itemRented = itemRented;
         this.dateRented = dateRented;
         this.returnDate = returnDate;
         this.dateReturned = dateReturned;
@@ -29,28 +40,20 @@ public class Renter extends User {
     @Override
     public String toString() {
         return "Renter{" +
-                "user=" + user +
-                ", itemREnted='" + itemREnted + '\'' +
+                ", itemRented='" + itemRented + '\'' +
                 ", dateRented=" + dateRented +
                 ", returnDate=" + returnDate +
                 ", dateReturned=" + dateReturned +
                 '}';
     }
 
-    public User getUser() {
-        return user;
+
+    public String getitemRented() {
+        return itemRented;
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public String getItemREnted() {
-        return itemREnted;
-    }
-
-    public void setItemREnted(String itemREnted) {
-        this.itemREnted = itemREnted;
+    public void setitemRented(String itemRented) {
+        this.itemRented = itemRented;
     }
 
     public LocalDate getDateRented() {

@@ -1,11 +1,11 @@
 package GodwinE.DAO;
 
-import GodwinE.entities.Books;
+import GodwinE.entities.Book;
 import GodwinE.entities.Magazine;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-import java.awt.print.Book;
+
 import java.util.UUID;
 
 public class MagazineDAO {

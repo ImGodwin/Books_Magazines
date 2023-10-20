@@ -1,9 +1,6 @@
 package GodwinE.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
@@ -18,6 +15,10 @@ public class Magazine {
     private String yearPublished;
     private int pages;
     private Release releaseStyle;
+
+    @ManyToOne
+    @JoinColumn(name = "renter_id", nullable = false)
+    private Renter renter;
 
     public Magazine(){}
 

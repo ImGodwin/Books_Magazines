@@ -25,7 +25,7 @@ public class UserDAO {
         em.persist(user);
 
         transaction.commit();
-        System.out.println("Student saved");
+        System.out.println("Book saved");
     }
 
     public User findById(UUID id) {

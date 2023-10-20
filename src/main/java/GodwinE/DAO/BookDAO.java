@@ -1,23 +1,23 @@
 package GodwinE.DAO;
 
 
-import GodwinE.entities.Books;
+import GodwinE.entities.Book;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-import java.awt.print.Book;
+
 import java.util.UUID;
 
-public class BooksDAO {
+public class BookDAO {
 
     private final EntityManager em;
 
-    public BooksDAO(EntityManager em)
+    public BookDAO(EntityManager em)
     {
         this.em = em;
     }
 
-    public void save(Books book){
+    public void save(Book book){
         EntityTransaction transaction = em.getTransaction();
 
         transaction.begin();
@@ -34,7 +34,7 @@ public class BooksDAO {
 
     public void findByIdAndDelete(UUID id)
     {
-        Books found = em.find(Books.class, id);
+        Book found = em.find(Book.class, id);
         if(found != null)
         {
             EntityTransaction transaction = em.getTransaction();
