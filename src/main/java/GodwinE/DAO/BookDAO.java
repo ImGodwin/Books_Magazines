@@ -57,4 +57,10 @@ public class BookDAO {
         name.setParameter("author", author);
         return name.getResultList();
     }
+
+    public List<Book> getByTitle(String title){
+        TypedQuery<Book> bookTitle = em.createQuery("SELECT b FROM Book b WHERE b.title LIKE %:title%", Book.class);
+        bookTitle.setParameter("title", title);
+        return bookTitle.getResultList();
+    }
 }

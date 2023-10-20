@@ -54,13 +54,13 @@ public class MagazineDAO {
     }
 
     //Search publication year
-   /* public List<Magazine> searchYearPublished(String date)
+    public List<Magazine> searchYearPublished(String date)
     {
         TypedQuery<Magazine> requestYearPublished = em.createQuery("SELECT Magazine FROM Magazine WHERE Magazine.yearpublished = :date", Magazine.class);
         requestYearPublished.setParameter("date", date);
         return requestYearPublished.getResultList();
 
-    }*/
+    }
 
     //Search by title
 

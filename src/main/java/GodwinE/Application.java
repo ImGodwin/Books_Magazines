@@ -86,10 +86,15 @@ public class Application {
 
             //<<<<<<<<<<<<get via year published>>>>>>>>>>>>>
 
-           // magDAO.searchYearPublished("1995");
+            //this method is not functioning
+            //magDAO.searchYearPublished("1995").forEach(year -> System.out.println(year));
+
 
             //<<<<<<<<<get author by name >>>>>>>>>>>>>>
-            bookDAO.getAuthor("Mr Mike").forEach(authors -> System.out.println(authors));
+           /* bookDAO.getAuthor("Mr Mike").forEach(authors -> System.out.println(authors));*/
+
+            //<<<<<<<<<get book by title>>>>>>>>>>>>
+            bookDAO.getByTitle("fathers book").forEach(book -> System.out.println(book));
 
         }catch (Exception ex){
             System.out.println(ex.getMessage());
